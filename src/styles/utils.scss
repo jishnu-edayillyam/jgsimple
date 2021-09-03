@@ -1,0 +1,288 @@
+@import "./breakpoints";
+$base-font-size: 16;
+
+%uppercase {
+  text-transform: uppercase;
+}
+
+%pointer {
+  cursor: pointer;
+}
+@mixin flex() {
+  display: flex !important;
+}
+@mixin flex-column() {
+  flex-direction: column;
+}
+@mixin align-center() {
+  align-items: center;
+}
+@mixin justify-center() {
+  justify-content: center;
+}
+@mixin justify-right() {
+  justify-content: flex-end;
+}
+@mixin justify-space-between() {
+  justify-content: space-between;
+}
+@mixin align-flex-end() {
+  align-items: flex-end;
+}
+@mixin fontSize($size, $important: false) {
+  $imp: "";
+  @if $important {
+    $imp: !important;
+  }
+  font-size: #{$size/$base-font-size}rem #{$imp};
+}
+@mixin width($value, $important: false) {
+  $imp: "";
+  @if $important {
+    $imp: !important;
+  }
+  width: #{$value/$base-font-size}rem #{$imp};
+}
+@mixin height($value, $important: false) {
+  $imp: "";
+  @if $important {
+    $imp: !important;
+  }
+  height: #{$value/$base-font-size}rem #{$imp};
+}
+@mixin padding(
+  $value1: "",
+  $value2: "",
+  $value3: "",
+  $value4: "",
+  $important: false
+) {
+  $imp: "";
+  @if $important {
+    $imp: !important;
+  }
+  @if ($value2 == "") {
+    padding: #{$value1/$base-font-size}rem #{$imp};
+  } @else if($value3 == "") {
+    padding: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$imp};
+  } @else if($value4 == "") {
+    padding: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$value3/$base-font-size}rem
+      #{$imp};
+  } @else {
+    padding: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$value3/$base-font-size}rem
+      #{$value4/$base-font-size}rem
+      #{$imp};
+  }
+}
+@mixin margin(
+  $value1: "",
+  $value2: "",
+  $value3: "",
+  $value4: "",
+  $important: false
+) {
+  $imp: "";
+  @if $important {
+    $imp: !important;
+  }
+  @if ($value2 == "") {
+    margin: #{$value1/$base-font-size}rem #{$imp};
+  } @else if($value3 == "") {
+    margin: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$imp};
+  } @else if($value4 == "") {
+    margin: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$value3/$base-font-size}rem
+      #{$imp};
+  } @else {
+    margin: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$value3/$base-font-size}rem
+      #{$value4/$base-font-size}rem
+      #{$imp};
+  }
+}
+@mixin borderRadius(
+  $value1: "",
+  $value2: "",
+  $value3: "",
+  $value4: "",
+  $important: false
+) {
+  $imp: "";
+  @if $important {
+    $imp: !important;
+  }
+  @if ($value2 == "") {
+    border-radius: #{$value1/$base-font-size}rem #{$imp};
+  } @else if($value3 == "") {
+    border-radius: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$imp};
+  } @else if($value4 == "") {
+    border-radius: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$value3/$base-font-size}rem
+      #{$imp};
+  } @else {
+    border-radius: #{$value1/$base-font-size}rem
+      #{$value2/$base-font-size}rem
+      #{$value3/$base-font-size}rem
+      #{$value4/$base-font-size}rem
+      #{$imp};
+  }
+}
+@mixin letterSpacing($size, $important: false) {
+  $imp: "";
+  @if $important {
+    $imp: !important;
+  }
+  letter-spacing: #{$size/$base-font-size}rem #{$imp};
+}
+
+// mixins for responsive styling
+@mixin mobile {
+  @media #{$mobile} {
+    @content;
+  }
+}
+@mixin tablet {
+  @media #{$tablet} {
+    @content;
+  }
+}
+@mixin tablet-only {
+  @media #{$tablet-only} {
+    @content;
+  }
+}
+@mixin desktop {
+  @media #{$desktop} {
+    @content;
+  }
+}
+@mixin hd {
+  @media #{$hd} {
+    @content;
+  }
+}
+@mixin hdPlus {
+  @media #{$hd-plus} {
+    @content;
+  }
+}
+@mixin fullHd {
+  @media #{$full-hd} {
+    @content;
+  }
+}
+@mixin uHd {
+  @media #{$u-hd} {
+    @content;
+  }
+}
+@mixin mobileLandscape {
+  @media #{$mobile-landscape} {
+    @content;
+  }
+}
+@mixin tabletOnly {
+  @media #{$tablet-only} {
+    @content;
+  }
+}
+.p-l-30 {
+  padding-left: 30px;
+}
+.no-padding {
+  padding: 0;
+}
+.no-margin {
+  margin: 0;
+}
+.no-border {
+  border: none !important;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.p-t-10 {
+  padding-top: 10px !important;
+}
+.p-t-15 {
+  padding-top: 15px;
+}
+.m-t-b-15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.m-t-b-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.m-t-b-30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.m-t-30 {
+  margin-top: 30px;
+}
+.m-t-15 {
+  margin-top: 15px;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+.outline-none {
+  outline: none;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.align-right {
+  text-align: right;
+}
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.word-beak {
+  word-break: break-all;
+}
+.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.display-none {
+  display: none;
+}
+.display-block {
+  display: block;
+}
+.full-width {
+  width: 100% !important;
+}
+.absolute {
+  position: absolute;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.pointer {
+  cursor: pointer;
+}
+// mixins for responsive styling ends here

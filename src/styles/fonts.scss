@@ -1,0 +1,7 @@
+$PUBLIC_URL: env(PUBLIC_URL);
+
+@font-face {
+  font-family: "SFUIText-Regular";
+  src: #{$PUBLIC_URL + url("/fonts/SFUIText-Regular.ttf")};
+}
+$SFUIText: "SFUIText-Regular", sans-serif;
