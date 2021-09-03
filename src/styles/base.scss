@@ -1,0 +1,44 @@
+@import "../styles/fonts";
+@import "../styles/colors";
+@import "../styles/utils";
+
+html {
+  height: 100%;
+
+  @include mobile {
+    font-size: 13px;
+  }
+  @include tablet {
+    font-size: 11px;
+  }
+  @include desktop {
+    font-size: 11px;
+  }
+  @include hd {
+    font-size: 11px;
+  }
+  @include hdPlus {
+    font-size: 12px;
+  }
+  @include fullHd {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: $blue-dark;
+}
+
+#root {
+  min-height: 100%;
+  position: relative;
+}
+
+h1 {
+  color: #0186be;
+  font-size: 24px;
+  word-break: break-all;
+}
