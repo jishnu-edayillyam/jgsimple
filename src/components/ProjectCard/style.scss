@@ -1,0 +1,48 @@
+.card-container {
+  height: 100%;
+  min-width: 250px;
+  padding-right: 20px;
+  display: grid;
+  place-items: center;
+
+  &:first-child {
+    margin-left: 20px;
+  }
+
+  .card {
+    height: 80%;
+    width: 100%;
+    overflow: hidden;
+    background-color: #000;
+    position: relative;
+    cursor: pointer;
+
+    &:hover img {
+      opacity: 0.4;
+      transform: scale(1.1);
+    }
+
+    &:hover .project-info div {
+      transform: translateY(0);
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition-duration: 0.5s;
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      padding: 10px;
+      color: #fff;
+
+      div {
+        transition-duration: 0.5s;
+        transform: translateY(calc(100% + 20px));
+      }
+    }
+  }
+}
