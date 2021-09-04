@@ -1,8 +1,9 @@
 import React from "react";
+import Gallery from "../../components/Gallery/Gallery";
 import "./style.scss";
 
 const ProjectDetails = () => {
-  return <div>sadasdasd</div>;
+  return <Gallery />;
 };
 
 export default ProjectDetails;
