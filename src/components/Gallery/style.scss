@@ -1,44 +1,46 @@
 @import "../../styles/utils";
 
-.gallery {
-  margin: 0 5px 5px;
-  line-height: 0;
+.gallery-container {
+  margin: 30px 5px 5px;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  // max-height: 100vh;
   flex-wrap: wrap;
-  // column-count: 4;
-  // column-gap: 5px;
+  justify-content: space-between;
+  align-items: center;
 
-  // @include mobile {
-  //   column-count: 2;
-  // }
-
-  // @include tablet-only {
-  //   column-count: 3;
-  // }
-
-  & > * {
-    cursor: pointer;
-    max-height: 50%;
-    min-height: 50%;
-    // width: 500px;
-    // flex: 1;
-    // flex-basis: 50%;
+  .slideshow-button {
+    position: sticky;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background-color: cadetblue;
   }
 
-  img {
-    // display: none;
-    // height: 100%;
-    width: fit-content;
-    // margin-top: 5px;
+  .gallery-header {
+  }
+}
+.gallery {
+  line-height: 0;
+  column-count: 2;
+  column-gap: 5px;
+
+  @include tablet {
+    column-count: 3;
   }
 
+  @include desktop {
+    column-count: 4;
+  }
+
+  img,
   video {
-    // display: none;
-    // height: fit-content;
-    width: auto;
-    // margin-top: 5px;
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+    margin-top: 5px;
+    cursor: pointer;
   }
 }

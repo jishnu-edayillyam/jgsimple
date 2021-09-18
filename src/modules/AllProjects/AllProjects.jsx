@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import "./style.scss";
 
@@ -7,16 +8,36 @@ const AllProjects = () => {
     <div className="horizontal-scroll-wrapper">
       <div className="horizontal-child">
         <div className="slide">
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
+          <Link to="/ProjectDetails">
+            <ProjectCard />
+          </Link>
         </div>
       </div>
     </div>

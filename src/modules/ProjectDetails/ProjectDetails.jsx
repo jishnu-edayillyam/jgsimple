@@ -3,7 +3,12 @@ import Gallery from "../../components/Gallery/Gallery";
 import "./style.scss";
 
 const ProjectDetails = () => {
-  return <Gallery />;
+  return (
+    <>
+      <div className="project-info">sdfsdf</div>
+      <Gallery />
+    </>
+  );
 };
 
 export default ProjectDetails;
