@@ -1,0 +1,46 @@
+@import "../../styles/utils";
+
+.gallery-container {
+  margin: 30px 5px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .slideshow-button {
+    position: sticky;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background-color: cadetblue;
+  }
+
+  .gallery-header {
+  }
+}
+.gallery {
+  line-height: 0;
+  column-count: 2;
+  column-gap: 5px;
+
+  @include tablet {
+    column-count: 3;
+  }
+
+  @include desktop {
+    column-count: 4;
+  }
+
+  img,
+  video {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+}
