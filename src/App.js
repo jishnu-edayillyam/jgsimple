@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import AllProjects from "./modules/AllProjects/AllProjects";
 import ProjectDetails from "./modules/ProjectDetails/ProjectDetails";
 import Slideshow from "./modules/Slideshow/Slideshow";
+import AllProjects from "./modules/AllProjects/AllProjects";
 
 function App() {
   return (

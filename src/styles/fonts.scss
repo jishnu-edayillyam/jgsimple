@@ -1,7 +1,2 @@
-$PUBLIC_URL: env(PUBLIC_URL);
-
-@font-face {
-  font-family: "SFUIText-Regular";
-  src: #{$PUBLIC_URL + url("/fonts/SFUIText-Regular.ttf")};
-}
-$SFUIText: "SFUIText-Regular", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");

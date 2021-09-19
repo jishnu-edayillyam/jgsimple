@@ -1,48 +1,50 @@
-.card-container {
-  height: 100%;
-  min-width: 250px;
-  padding-right: 20px;
-  display: grid;
-  place-items: center;
+@import "../../styles/fonts.scss";
 
-  &:first-child {
-    margin-left: 20px;
+.card-container {
+  height: 80px;
+  overflow: hidden;
+  transition: ease 1s;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+
+  &:hover {
+    height: 200px;
   }
 
   .card {
-    height: 80%;
-    width: 100%;
-    overflow: hidden;
-    background-color: #000;
     position: relative;
-    cursor: pointer;
-
+    height: 100%;
+    background-color: #000;
     &:hover img {
-      opacity: 0.4;
-      transform: scale(1.1);
-    }
-
-    &:hover .project-info div {
-      transform: translateY(0);
+      opacity: 0.7;
+      transform: translateY(-50%) scale(1.2);
     }
 
     img {
-      height: 100%;
+      opacity: 0.2;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
       width: 100%;
-      object-fit: cover;
-      transition-duration: 0.5s;
+      transition-duration: 1s;
     }
 
-    .project-info {
+    .project-basic-info {
       position: absolute;
-      bottom: 0;
-      padding: 10px;
       color: #fff;
-      background: none;
+      bottom: 0;
+      right: 20px;
 
       div {
-        transition-duration: 0.5s;
-        transform: translateY(calc(100% + 20px));
+        h2 {
+          text-align: right;
+          // white-space: nowrap;
+          font-size: 60px;
+          line-height: 80px;
+          // font-family: "Limelight", cursive;
+          font-family: "Montserrat", sans-serif;
+          font-variant-caps: all-small-caps;
+        }
       }
     }
   }
