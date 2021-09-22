@@ -32,7 +32,7 @@ const Gallery = () => {
         <h1>Gallery</h1>
       </div>
       <Link to="/slideshow" className="slideshow-button">
-        Slideshow
+        <img src="slideshow2.svg" alt="slideshow" />
       </Link>
       <div className="gallery" style={columnCount && { columnCount }}>
         {mediaFiles.map((mediaFile, index) => (
