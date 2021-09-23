@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Gallery from "../../components/Gallery/Gallery";
 import "./style.scss";
 
@@ -26,26 +26,46 @@ const workDetails = [
 ];
 
 const ProjectDetails = () => {
-
   useEffect(() => {
-    const cards = document.querySelectorAll(".about-cards")
+    const cards = document.querySelectorAll(".about-cards");
 
-    const observer = new IntersectionObserver(
-      (entries, ) => {
-        console.log(entries)
-      }, {
-        threshold: 1
+    const observerOnDown = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("appear");
+          }
+        });
+      },
+      {
+        threshold: 0.4,
       }
     );
 
-    cards.forEach(card => {
-      
-      observer.observe(card)
+    const observerOnUp = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            entry.target.classList.remove("appear");
+          }
+        });
+      },
+      {
+        threshold: 0,
+      }
+    );
+
+    cards.forEach((card) => {
+      observerOnDown.observe(card);
+      observerOnUp.observe(card);
     });
     return () => {
-      observer.unobserve()
-    }
-  }, [])
+      cards.forEach((card) => {
+        observerOnDown.unobserve(card);
+        observerOnUp.unobserve(card);
+      });
+    };
+  }, []);
 
   return (
     <div className="project-details-page">

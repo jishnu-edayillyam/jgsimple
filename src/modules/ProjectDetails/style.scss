@@ -71,32 +71,66 @@
   }
 
   .about-the-work {
-    div {
+    overflow-x: hidden;
+
+    .about-cards {
       position: relative;
       margin-top: 50px;
+      opacity: 0;
+      transition: opacity 500ms ease;
 
       &:nth-child(even) {
         text-align: end;
+
+        & img {
+          transform: translateX(100%);
+        }
+
+        & p {
+          transform: translate(100%, -50%);
+        }
       }
-    }
 
-    img {
-      opacity: 0.5;
-      // background-image: linear-gradient(red, yellow);
-      background-blend-mode: multiply;
-      width: 40%;
-      border: 5px solid #fff;
-    }
+      &:nth-child(odd) {
+        & img {
+          transform: translateX(-100%);
+        }
 
-    p {
-      font-size: 30px;
-      // font-weight: 500;
-      color: #fff;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 25%;
-      width: 50%;
+        & p {
+          transform: translate(-100%, -50%);
+        }
+      }
+
+      img {
+        opacity: 0.5;
+        background-blend-mode: multiply;
+        width: 40%;
+        border: 5px solid #fff;
+        transition: transform 300ms ease;
+      }
+
+      p {
+        font-size: 30px;
+        // font-weight: 500;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        width: 50%;
+        transition: transform 400ms ease;
+      }
+
+      &.appear {
+        opacity: 1;
+
+        & img {
+          transform: translateX(0);
+        }
+
+        & p {
+          transform: translate(0, -50%);
+        }
+      }
     }
   }
 }
