@@ -11,15 +11,27 @@
     position: sticky;
     top: 20px;
     right: 20px;
-    width: 50px;
-    height: 50px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    border-radius: 23px;
     background-color: cadetblue;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+
+    span {
+      overflow: hidden;
+      width: 85px;
+      transition: width 500ms ease;
+    }
 
     img {
-      width: 30px;
+      margin: 10px;
+      width: 26px;
+    }
+
+    &.sticked span {
+      width: 0;
     }
   }
 

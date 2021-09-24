@@ -10,12 +10,6 @@
     height: 90vh;
 
     .media-container {
-      background-color: aquamarine;
-
-      &:nth-child(even) {
-        background-color: cadetblue;
-      }
-
       img,
       video {
         width: 100vw;
