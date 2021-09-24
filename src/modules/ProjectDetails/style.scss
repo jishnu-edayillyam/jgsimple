@@ -1,70 +1,50 @@
 @import "../../styles/fonts.scss";
 
 .project-details-page {
+  display: flex;
+  flex-direction: column;
+  row-gap: 100px;
+
   .project-info {
-    height: 100vh;
-    opacity: 0.5;
-    background-image: linear-gradient(
-        to right,
-        rgb(0, 0, 0),
-        rgba(0, 0, 0, 0.5)
-      ),
-      url("./house1.jpg");
     position: relative;
-
-    & > * {
-      position: absolute;
-    }
-
-    .basic-info {
-      left: 70px;
-      bottom: 50px;
-      width: 60%;
-      color: #fff;
-
-      h1 {
-        font-variant-caps: all-small-caps;
-        font-size: 60px;
-        line-height: 40px;
-      }
-
-      p {
-        margin-top: 20px;
-      }
-    }
-
-    img {
-      object-fit: cover;
-    }
-
-    .group_image {
-      border: 2px solid white;
-    }
-
-    .group_image_1 {
-      width: 300px;
-      height: 200px;
-    }
-
-    .group_image_2 {
-      width: 200px;
-      height: 300px;
-      top: 50px;
-      left: 250px;
-    }
-
-    .group_image_3 {
-      width: 250px;
-      height: 250px;
-      top: 250px;
-      left: 50px;
-    }
+    height: 100vh;
 
     .main-image {
-      width: 50%;
+      width: 100%;
       height: 100%;
+      opacity: 0.5;
+    }
+
+    .basic-info-container {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
       top: 0;
-      right: 0;
+      left: 0;
+      background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0)
+      );
+
+      .basic-info {
+        position: absolute;
+        left: 70px;
+        bottom: 50px;
+        width: 60%;
+        color: #fff;
+
+        h1 {
+          font-variant-caps: all-small-caps;
+          font-size: 60px;
+          line-height: 40px;
+        }
+
+        p {
+          margin-top: 20px;
+        }
+      }
     }
   }
 
@@ -101,7 +81,6 @@
 
       img {
         opacity: 0.5;
-        background-blend-mode: multiply;
         width: 40%;
         border: 5px solid #fff;
         transition: transform 300ms ease;
@@ -109,7 +88,6 @@
 
       p {
         font-size: 30px;
-        // font-weight: 500;
         color: #fff;
         position: absolute;
         top: 50%;
