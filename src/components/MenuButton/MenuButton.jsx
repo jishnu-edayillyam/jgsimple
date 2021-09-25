@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import Menu from "../../modules/Menu/Menu";
+import Menu from "../Menu/Menu";
 
 const MenuButton = () => {
   const [displayMenu, setDisplayMenu] = useState(false);
