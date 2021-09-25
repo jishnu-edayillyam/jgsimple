@@ -1,7 +1,8 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
+import PropTypes from "prop-types";
 import "./style.scss";
 
-const VerticalProjectCard = ({ projectDetail }) => {
+const ProjectCard = ({ projectDetail }) => {
   const [fontSize, setFontSize] = useState(60);
   const headingRef = useRef();
   const containerRef = useRef();
@@ -27,7 +28,6 @@ const VerticalProjectCard = ({ projectDetail }) => {
         <div className="project-basic-info">
           <div>
             <h2 ref={headingRef}>{projectDetail.projectName}</h2>
-            {/* <p>client: someone</p> */}
           </div>
         </div>
       </div>
@@ -35,4 +35,11 @@ const VerticalProjectCard = ({ projectDetail }) => {
   );
 };
 
-export default VerticalProjectCard;
+ProjectCard.propTypes = {
+  projectDetail: PropTypes.shape({
+    imageSource: PropTypes.string,
+    projectName: PropTypes.string,
+  }).isRequired,
+};
+
+export default ProjectCard;

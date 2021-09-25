@@ -16,10 +16,9 @@
     border-radius: 23px;
     background-color: cadetblue;
     font-size: 14px;
-    text-decoration: none;
-    color: #000;
 
     span {
+      color: #000;
       overflow: hidden;
       width: 85px;
       transition: width 500ms ease;
@@ -61,5 +60,10 @@
     object-fit: contain;
     margin-top: 5px;
     cursor: pointer;
+  }
+
+  // video elements are brighter and can easily be seen through the Menu component
+  video {
+    opacity: 0.9;
   }
 }

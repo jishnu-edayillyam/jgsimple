@@ -1,0 +1,14 @@
+.menu-button {
+  position: fixed;
+  z-index: 2;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+
+  div {
+    width: 35px;
+    height: 5px;
+    background-color: #fff;
+    margin: 6px 0;
+  }
+}

@@ -1,0 +1,76 @@
+@import "../../styles/fonts";
+
+.menu {
+  $widthAnimationDuration: 200ms;
+
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  font-size: 80px;
+  font-family: "Six Caps", sans-serif;
+
+  .left-menu,
+  .right-menu {
+    height: 100vh;
+    padding: 150px 0;
+    display: grid;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: widthAnimate $widthAnimationDuration
+      cubic-bezier(0.15, 0.45, 0.7, -0.01) forwards;
+
+    @keyframes widthAnimate {
+      0% {
+        width: 0%;
+      }
+      100% {
+        width: 50%;
+      }
+    }
+
+    a {
+      color: #fff;
+      opacity: 0;
+
+      &:nth-child(1) {
+        animation: textAnimate1 500ms ease $widthAnimationDuration forwards;
+      }
+
+      &:nth-child(2) {
+        animation: textAnimate2 500ms ease $widthAnimationDuration + 50 forwards;
+      }
+
+      @keyframes textAnimate1 {
+        0% {
+          opacity: 0;
+          transform: translateY(100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes textAnimate2 {
+        0% {
+          opacity: 0;
+          transform: translateY(200px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  }
+
+  .left-menu {
+    border-right: 1px solid #fff;
+  }
+
+  .right-menu {
+    border-left: 1px solid #fff;
+  }
+}

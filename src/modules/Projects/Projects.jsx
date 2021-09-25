@@ -49,7 +49,7 @@ const projectDetails = [
   },
 ];
 
-const VerticalAllProjects = () => {
+const Projects = () => {
   return (
     <div className="projects-list-container">
       {projectDetails.map((projectDetail, index) => (
@@ -61,4 +61,4 @@ const VerticalAllProjects = () => {
   );
 };
 
-export default VerticalAllProjects;
+export default Projects;
