@@ -8,9 +8,48 @@
 
     h1 {
       font-size: 120px;
+      margin-bottom: 50px;
     }
 
-    .social-media {
+    .email-social-media-container {
+      display: flex;
+      column-gap: 100px;
+
+      .social-media {
+        display: flex;
+        align-items: center;
+        column-gap: 30px;
+
+        button {
+          cursor: pointer;
+          padding: 12px;
+          height: fit-content;
+          display: grid;
+          place-items: center;
+          border-radius: 50%;
+
+          &:hover {
+            background-color: rgba(256, 256, 256, 0.2);
+          }
+        }
+
+        .social-media-icon {
+          width: 30px;
+        }
+      }
+
+      .email-button {
+        border: 3px solid #fff;
+        color: #fff;
+        padding: 12px;
+        font-size: 50px;
+        cursor: pointer;
+        font-family: "Teko", sans-serif;
+        line-height: 50px;
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+      }
     }
   }
 
