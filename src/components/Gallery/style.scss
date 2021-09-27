@@ -1,7 +1,7 @@
 @import "../../styles/utils";
 
 .gallery-container {
-  margin: 30px 5px 5px;
+  margin: 0 5px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -11,15 +11,33 @@
     position: sticky;
     top: 20px;
     right: 20px;
-    width: 100px;
-    height: 100px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    border-radius: 23px;
     background-color: cadetblue;
+    font-size: 14px;
+
+    span {
+      color: #000;
+      overflow: hidden;
+      width: 85px;
+      transition: width 500ms ease;
+    }
+
+    img {
+      margin: 10px;
+      width: 26px;
+    }
+
+    &.sticked span {
+      width: 0;
+    }
   }
 
   .gallery-header {
+    h1 {
+      color: #fff;
+    }
   }
 }
 .gallery {
@@ -42,5 +60,10 @@
     object-fit: contain;
     margin-top: 5px;
     cursor: pointer;
+  }
+
+  // video elements are brighter and can easily be seen through the Menu component
+  video {
+    opacity: 0.9;
   }
 }

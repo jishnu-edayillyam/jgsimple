@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import "./style.scss";
 // import 'gif-me-duration'
 
@@ -42,7 +43,7 @@ const mediaFiles = [
   "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_960_720.jpg",
   "https://c.tenor.com/QfeoKJri8-8AAAAd/spongebob-long-list.gif",
   "https://hips.hearstapps.com/pop.h-cdn.co/assets/17/24/640x320/landscape-1497533116-not-dead.gif",
-  "28606760851a477da185da5584b6d2f1.mp4",
+  // "28606760851a477da185da5584b6d2f1.mp4",
   "https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg",
 ];
 
@@ -79,7 +80,7 @@ for (let i = 0; i < mediaFiles.length; i++) {
     mediaFiles.splice(i, 1);
 }
 
-const App2 = () => {
+const Slideshow = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const timeoutRef = useRef(null);
   //   const pauseTimeout = useRef(null);
@@ -88,21 +89,22 @@ const App2 = () => {
   //   const [timeouts, setTimeouts] = useState(Array(mediaFiles.length).fill(4000));
   // const [timeout, setTimeout] = useState(1000);
   const defaultTimeout = 4000;
-  const indexCircles = [];
+  // const indexCircles = [];
   const videoRef = useRef(null);
+  const history = useHistory();
 
-  for (let i = 0; i < mediaFiles.length; i++) {
-    indexCircles.push(
-      <div
-        key={i}
-        className={`index-circle " ${
-          i === slideIndex ? "current-circle" : ""
-        } ${i <= slideIndex ? "completed" : ""}`}
-      >
-        {i + 1}
-      </div>
-    );
-  }
+  // for (let i = 0; i < mediaFiles.length; i++) {
+  //   indexCircles.push(
+  //     <div
+  //       key={i}
+  //       className={`index-circle " ${
+  //         i === slideIndex ? "current-circle" : ""
+  //       } ${i <= slideIndex ? "completed" : ""}`}
+  //     >
+  //       {i + 1}
+  //     </div>
+  //   );
+  // }
 
   const getMediaElement = (media) => {
     if (getFileType(media) === IMAGEFILE)
@@ -118,6 +120,14 @@ const App2 = () => {
   function resetTimeout() {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
+    }
+  }
+
+  function updateSlide() {
+    if (slideIndex === mediaFiles.length - 1) {
+      history.goBack();
+    } else {
+      setSlideIndex(slideIndex + 1);
     }
   }
 
@@ -145,9 +155,7 @@ const App2 = () => {
         }, delay);
 
         timeoutRef.current = setTimeout(() => {
-          setSlideIndex((prevIndex) =>
-            prevIndex === mediaFiles.length - 1 ? 0 : prevIndex + 1
-          );
+          updateSlide();
         }, defaultTimeout - 1000 + delay);
       });
     } else if (
@@ -166,9 +174,7 @@ const App2 = () => {
         }, delay);
 
         timeoutRef.current = setTimeout(() => {
-          setSlideIndex((prevIndex) =>
-            prevIndex === mediaFiles.length - 1 ? 0 : prevIndex + 1
-          );
+          updateSlide();
         }, currentMedia.duration * 1000 + delay);
       });
     } else {
@@ -194,9 +200,7 @@ const App2 = () => {
       }, 1000);
 
       timeoutRef.current = setTimeout(() => {
-        setSlideIndex((prevIndex) =>
-          prevIndex === mediaFiles.length - 1 ? 0 : prevIndex + 1
-        );
+        updateSlide();
       }, timeout);
     }
 
@@ -224,7 +228,18 @@ const App2 = () => {
       <div className="counter">
         {/* <button onClick={() => {setSlideIndex((prevIndex) => prevIndex === mediaFiles.length - 1 ? 0 : prevIndex + 1)}}>click me</button> */}
         <div className="player-line-background" />
-        <div className="index-circles-container">{indexCircles}</div>
+        <div className="index-circles-container">
+          {mediaFiles.map((mediaFile, index) => (
+            <div
+              key={index}
+              className={`index-circle " ${
+                index === slideIndex ? "current-circle" : ""
+              } ${index <= slideIndex ? "completed" : ""}`}
+            >
+              {index + 1}
+            </div>
+          ))}
+        </div>
         <div
           ref={playerLineRef}
           className="player-line"
@@ -235,4 +250,4 @@ const App2 = () => {
   );
 };
 
-export default App2;
+export default Slideshow;

@@ -2,113 +2,107 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-}
 
-.slideshow {
-  transition: ease 1000ms;
-  display: flex;
-  width: 100vw;
-  height: 90vh;
-}
+  .slideshow {
+    transition: ease 1000ms;
+    display: flex;
+    width: 100vw;
+    height: 90vh;
 
-.media-container {
-  background-color: aquamarine;
-}
+    .media-container {
+      img,
+      video {
+        width: 100vw;
+        height: 90vh;
+        object-fit: scale-down;
+      }
+    }
+  }
 
-.media-container:nth-child(even) {
-  background-color: cadetblue;
-}
+  .counter {
+    display: flex;
+    //   justify-content: end;
+    position: relative;
+    transform: translateX(100px);
 
-img,
-video {
-  width: 100vw;
-  height: 90vh;
-  object-fit: scale-down;
-}
+    .player-line-background {
+      position: absolute;
+      z-index: -2;
+      transform: translateX(-100px);
+      top: 50%;
+      width: calc(100% + 100px);
+      height: 1px;
+      background-color: grey;
+    }
 
-.counter {
-  display: flex;
-  //   justify-content: end;
-  position: relative;
-  transform: translateX(100px);
-}
+    .index-circles-container {
+      display: flex;
 
-.index-circles-container {
-  display: flex;
-}
+      .index-circle {
+        width: 30px;
+        height: 30px;
+        background-color: aquamarine;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
 
-.index-circle {
-  width: 30px;
-  height: 30px;
-  background-color: aquamarine;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-}
+        &.current-circle {
+          background-color: brown;
+        }
 
-.index-circle.current-circle {
-  background-color: brown;
-}
+        &.completed {
+          transform: translateX(-100px);
+          transition: ease 1000ms;
+        }
+      }
+    }
 
-.completed {
-  transform: translateX(-100px);
-  transition: ease 1000ms;
-}
-
-.player-line-background {
-  position: absolute;
-  z-index: -2;
-  transform: translateX(-100px);
-  top: 50%;
-  width: calc(100% + 100px);
-  height: 1px;
-  background-color: grey;
-}
-
-.player-line {
-  position: absolute;
-  z-index: -1;
-  top: calc(50% - 1px);
-  /* top: 0; */
-  transition-delay: 1s;
-  transition-timing-function: ease;
-  /* width: 100px; */
-  /* transform: translateX(-70px); */
-  /* transform-origin: left;
+    .player-line {
+      position: absolute;
+      z-index: -1;
+      top: calc(50% - 1px);
+      /* top: 0; */
+      transition-delay: 1s;
+      transition-timing-function: ease;
+      /* width: 100px; */
+      /* transform: translateX(-70px); */
+      /* transform-origin: left;
     transition: width linear 3000ms; */
-  /* animation: width-animate 3000ms linear 0s, width-reduce 1000ms linear 3000ms; */
-  /* animation-timing-function: linear, linear;
+      /* animation: width-animate 3000ms linear 0s, width-reduce 1000ms linear 3000ms; */
+      /* animation-timing-function: linear, linear;
     animation-iteration-count: 2, 2;
     animation-duration: 3000ms, 1000ms;
     animation-delay: 0, 3000ms;
     -webkit-animation-delay: 0, 3000ms; */
 
-  /* animation: width-animate;
+      /* animation: width-animate;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-duration: 3000ms; */
-  /* animation-delay: 1000ms;
+      /* animation-delay: 1000ms;
     -webkit-animation-delay: 1000ms; */
-  /* animation-duration: 4s; */
-  height: 3px;
-  background-color: green;
-}
+      /* animation-duration: 4s; */
+      height: 3px;
+      background-color: green;
+    }
+  }
 
-@keyframes width-animate {
-  0% {
-    width: 1px;
+  @keyframes width-animate {
+    0% {
+      width: 1px;
+    }
+    100% {
+      width: 100px;
+    }
   }
-  100% {
-    width: 100px;
-  }
-}
-@keyframes width-reduce {
-  0% {
-    width: 100px;
-    /* background-color: green; */
-  }
-  100% {
-    width: 1px;
-    /* background-color: red; */
+  @keyframes width-reduce {
+    0% {
+      width: 100px;
+      /* background-color: green; */
+    }
+    100% {
+      width: 1px;
+      /* background-color: red; */
+    }
   }
 }

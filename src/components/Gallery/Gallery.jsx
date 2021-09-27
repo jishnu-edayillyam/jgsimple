@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { filterMediaFiles, getMediaElement } from "../../store/utils";
+import SlideShowButton from "./SlideShowButton/SlideShowButton";
 import "./style.scss";
 
 const mediaFiles = [
@@ -31,9 +31,7 @@ const Gallery = () => {
       <div className="gallery-header">
         <h1>Gallery</h1>
       </div>
-      <Link to="/slideshow" className="slideshow-button">
-        Slideshow
-      </Link>
+      <SlideShowButton />
       <div className="gallery" style={columnCount && { columnCount }}>
         {mediaFiles.map((mediaFile, index) => (
           <a href={mediaFile} key={index}>
