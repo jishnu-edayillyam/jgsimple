@@ -26,6 +26,7 @@ const Email = ({ closeEmailModal }) => {
       .then(
         () => {
           form.current.reset();
+          closeEmailModal();
         },
         () => {
           form.current.reset();

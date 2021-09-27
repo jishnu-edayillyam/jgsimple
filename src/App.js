@@ -6,6 +6,7 @@ import Slideshow from "./modules/Slideshow/Slideshow";
 import Projects from "./modules/Projects/Projects";
 import Contact from "./modules/Contact/Contact";
 import MenuButton from "./components/MenuButton/MenuButton";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <MenuButton />
       <Switch>
         <Route exact path="/" component={Projects} />
+        <Route exact path="/Loader" component={Loader} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/ProjectDetails" component={ProjectDetails} />
         <Route exact path="/slideshow" component={Slideshow} />
