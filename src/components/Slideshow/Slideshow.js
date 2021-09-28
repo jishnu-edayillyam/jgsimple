@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom";
+import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
+import PropTypes from "prop-types";
 import "./style.scss";
 // import 'gif-me-duration'
 
@@ -43,8 +44,8 @@ const mediaFiles = [
   "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_960_720.jpg",
   "https://c.tenor.com/QfeoKJri8-8AAAAd/spongebob-long-list.gif",
   "https://hips.hearstapps.com/pop.h-cdn.co/assets/17/24/640x320/landscape-1497533116-not-dead.gif",
-  // "28606760851a477da185da5584b6d2f1.mp4",
-  "https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg",
+  "28606760851a477da185da5584b6d2f1.mp4",
+  "https://i.pinimg.com/564x/83/64/66/83646654668bf9ae412f45bb2e417ddf.jpg",
 ];
 
 const imageFileFormats = ["jpg", "jpeg", "png", "gif"];
@@ -80,7 +81,7 @@ for (let i = 0; i < mediaFiles.length; i++) {
     mediaFiles.splice(i, 1);
 }
 
-const Slideshow = () => {
+const Slideshow = ({ endSlideshow }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const timeoutRef = useRef(null);
   //   const pauseTimeout = useRef(null);
@@ -91,8 +92,16 @@ const Slideshow = () => {
   const defaultTimeout = 4000;
   // const indexCircles = [];
   const videoRef = useRef(null);
-  const history = useHistory();
+  const slideshowContainerRef = useRef();
 
+  useEffect(() => {
+    disableBodyScroll(slideshowContainerRef.current, {
+      reserveScrollBarGap: true,
+    });
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, []);
   // for (let i = 0; i < mediaFiles.length; i++) {
   //   indexCircles.push(
   //     <div
@@ -125,7 +134,7 @@ const Slideshow = () => {
 
   function updateSlide() {
     if (slideIndex === mediaFiles.length - 1) {
-      history.goBack();
+      endSlideshow();
     } else {
       setSlideIndex(slideIndex + 1);
     }
@@ -213,7 +222,7 @@ const Slideshow = () => {
   }, [slideIndex]);
 
   return (
-    <div className="slideshow-container">
+    <div className="slideshow-container" ref={slideshowContainerRef}>
       <div
         ref={slideshowRef}
         className="slideshow"
@@ -225,29 +234,52 @@ const Slideshow = () => {
           </div>
         ))}
       </div>
-      <div className="counter">
-        {/* <button onClick={() => {setSlideIndex((prevIndex) => prevIndex === mediaFiles.length - 1 ? 0 : prevIndex + 1)}}>click me</button> */}
-        <div className="player-line-background" />
-        <div className="index-circles-container">
-          {mediaFiles.map((mediaFile, index) => (
-            <div
-              key={index}
-              className={`index-circle " ${
-                index === slideIndex ? "current-circle" : ""
-              } ${index <= slideIndex ? "completed" : ""}`}
-            >
-              {index + 1}
-            </div>
-          ))}
+      <div className="counter-container">
+        <div className="counter">
+          <div className="player-line-background">
+            <div className="horizontal-line" />
+            {slideIndex === mediaFiles.length - 1 && (
+              <div className="vertical-line" />
+            )}
+          </div>
+          <div className="index-circles-container">
+            {mediaFiles.map((mediaFile, index) => (
+              <button
+                type="button"
+                key={index}
+                disabled={index < slideIndex}
+                className={`index-circle " ${
+                  index === slideIndex ? "current-circle" : ""
+                } ${index <= slideIndex ? "completed" : ""}`}
+                onClick={() => setSlideIndex(index)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+          <div
+            ref={playerLineRef}
+            className="player-line"
+            style={{ transform: `translateX(${-70 + slideIndex * 30}px)` }}
+          />
         </div>
-        <div
-          ref={playerLineRef}
-          className="player-line"
-          style={{ transform: `translateX(${-70 + slideIndex * 30}px)` }}
-        />
+        <button
+          type="button"
+          className="previous-next-button"
+          disabled={slideIndex === mediaFiles.length - 1}
+          onClick={() => {
+            setSlideIndex((prevIndex) => prevIndex + 1);
+          }}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
+};
+
+Slideshow.propTypes = {
+  endSlideshow: PropTypes.func.isRequired,
 };
 
 export default Slideshow;

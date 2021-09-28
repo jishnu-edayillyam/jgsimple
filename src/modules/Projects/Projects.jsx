@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./style.scss";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import db from "../../firebase";
+import { slugify } from "../../store/utils";
 
 // const projectDetails = [
 //   { imageSource: "house2.jpg", projectName: "AllProjects component created" },
@@ -67,7 +68,7 @@ const Projects = () => {
   return (
     <div className="projects-list-container">
       {projects.map((project, index) => (
-        <Link to={`/projects/${project.name}`} key={index}>
+        <Link to={`/projects/${slugify(project.name)}`} key={index}>
           <ProjectCard details={project} />
         </Link>
       ))}
