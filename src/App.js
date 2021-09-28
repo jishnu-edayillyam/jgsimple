@@ -16,7 +16,7 @@ function App() {
         <Route exact path="/" component={Projects} />
         <Route exact path="/Loader" component={Loader} />
         <Route exact path="/contact" component={Contact} />
-        <Route exact path="/ProjectDetails" component={ProjectDetails} />
+        <Route exact path="/projects/:id" component={ProjectDetails} />
         <Route exact path="/slideshow" component={Slideshow} />
         {/* <PrivateRoute exact path="/problems/:id" component={ProblemPage} /> */}
       </Switch>
