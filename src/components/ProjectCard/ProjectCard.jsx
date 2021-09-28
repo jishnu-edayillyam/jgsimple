@@ -2,7 +2,7 @@ import React, { useState, useRef, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import "./style.scss";
 
-const ProjectCard = ({ projectDetail }) => {
+const ProjectCard = ({ details }) => {
   const [fontSize, setFontSize] = useState(60);
   const headingRef = useRef();
   const containerRef = useRef();
@@ -24,10 +24,10 @@ const ProjectCard = ({ projectDetail }) => {
   return (
     <div className="card-container" ref={containerRef}>
       <div className="card">
-        <img src={projectDetail.imageSource} alt="project_image" />
+        <img src={details.titleImage} alt="project_image" />
         <div className="project-basic-info">
           <div>
-            <h2 ref={headingRef}>{projectDetail.projectName}</h2>
+            <h2 ref={headingRef}>{details.name}</h2>
           </div>
         </div>
       </div>
@@ -36,9 +36,9 @@ const ProjectCard = ({ projectDetail }) => {
 };
 
 ProjectCard.propTypes = {
-  projectDetail: PropTypes.shape({
-    imageSource: PropTypes.string,
-    projectName: PropTypes.string,
+  details: PropTypes.shape({
+    titleImage: PropTypes.string,
+    name: PropTypes.string,
   }).isRequired,
 };
 
