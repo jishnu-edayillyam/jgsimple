@@ -1,0 +1,28 @@
+.jumping-text-container {
+  display: flex;
+
+  .jumping-text {
+    line-height: 1em;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+
+    pre {
+      font-family: "Six Caps", sans-serif;
+    }
+
+    & .jumping-text-bottom {
+      position: absolute;
+    }
+  }
+
+  &.hovered {
+    .jumping-text {
+      .jumping-text-top,
+      .jumping-text-bottom {
+        transform: translateY(-100%);
+        transition: linear var(--duration) var(--delay);
+      }
+    }
+  }
+}

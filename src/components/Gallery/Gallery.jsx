@@ -24,7 +24,7 @@ const mediaFiles = [
 const columnCount = null;
 
 const Gallery = () => {
-  const [displaySlideshow, setDisplaySlideshow] = useState(true);
+  const [displaySlideshow, setDisplaySlideshow] = useState(false);
 
   useEffect(() => {
     filterMediaFiles(mediaFiles);

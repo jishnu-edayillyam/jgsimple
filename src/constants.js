@@ -20,3 +20,6 @@ export const VIDEO_FILE_FORMATS = [
   "swf",
   "flv",
 ];
+
+export const textJumpDurationOfEachLetter = 200;
+export const textJumpDelayOfLastLetter = 200;

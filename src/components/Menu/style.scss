@@ -1,8 +1,6 @@
 @import "../../styles/fonts";
 
 .menu {
-  $widthAnimationDuration: 200ms;
-
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -18,7 +16,7 @@
     display: grid;
     place-items: center;
     background-color: rgba(0, 0, 0, 0.9);
-    animation: widthAnimate $widthAnimationDuration
+    animation: widthAnimate var(--widthAnimationDuration)
       cubic-bezier(0.15, 0.45, 0.7, -0.01) forwards;
 
     @keyframes widthAnimate {
@@ -35,11 +33,13 @@
       opacity: 0;
 
       &:nth-child(1) {
-        animation: textAnimate1 500ms ease $widthAnimationDuration forwards;
+        animation: textAnimate1 var(--slideUpDuration) ease var(--slideUpDelay)
+          forwards;
       }
 
       &:nth-child(2) {
-        animation: textAnimate2 500ms ease $widthAnimationDuration + 50 forwards;
+        animation: textAnimate2 var(--slideUpDuration) ease var(--slideUpDelay)
+          forwards;
       }
 
       @keyframes textAnimate1 {

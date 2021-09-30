@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore/lite";
+import { disableNetwork } from "firebase/firestore";
 import PropTypes from "prop-types";
 import Gallery from "../../components/Gallery/Gallery";
 import "./style.scss";
@@ -16,6 +17,7 @@ const ProjectDetails = ({ match }) => {
       where("name", "==", slugReverse(match.params.id))
     );
     const projectsSnapshot = await getDocs(q);
+    await disableNetwork(db);
     setProjects(projectsSnapshot.docs.map((doc1) => doc1.data()));
   }
 
