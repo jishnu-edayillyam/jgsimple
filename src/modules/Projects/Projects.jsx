@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { collection, getDocs } from "firebase/firestore/lite";
 import { Link } from "react-router-dom";
 import "./style.scss";
@@ -62,6 +62,14 @@ const Projects = () => {
   // useEffect(() => {
   //   getProjects();
   // }, []);
+
+  // hide scrollbar for only this page
+  useEffect(() => {
+    document.body.classList.add("no-scrollbar");
+    return () => {
+      document.body.classList.remove("no-scrollbar");
+    };
+  }, []);
 
   return (
     <div className="projects-list-container">

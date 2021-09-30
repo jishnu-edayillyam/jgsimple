@@ -8,6 +8,7 @@ import {
 
 const JumpingText = ({ text, animateOnMount, animateOnMountDelay }) => {
   const ref = useRef();
+  const timeoutRef = useRef();
 
   const splitText = (str) => {
     return str.split("").map((letter, index) => (
@@ -31,8 +32,8 @@ const JumpingText = ({ text, animateOnMount, animateOnMountDelay }) => {
 
   const setTextHovered = () => {
     ref.current.classList.add("hovered");
-    setTimeout(() => {
-      ref.current.classList.remove("hovered");
+    timeoutRef.current = setTimeout(() => {
+      ref.current?.classList.remove("hovered");
     }, textJumpDurationOfEachLetter + textJumpDelayOfLastLetter); // total text jump time for last letter
   };
 
@@ -42,6 +43,7 @@ const JumpingText = ({ text, animateOnMount, animateOnMountDelay }) => {
         setTextHovered();
       }, animateOnMountDelay);
     }
+    return clearTimeout(timeoutRef.current);
   }, []);
 
   return (
