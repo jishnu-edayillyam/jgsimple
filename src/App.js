@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import ProjectDetails from "./modules/ProjectDetails/ProjectDetails";
-import Slideshow from "./modules/Slideshow/Slideshow";
 import Projects from "./modules/Projects/Projects";
 import Contact from "./modules/Contact/Contact";
 import MenuButton from "./components/MenuButton/MenuButton";
@@ -17,8 +16,6 @@ function App() {
         <Route exact path="/Loader" component={Loader} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/projects/:id" component={ProjectDetails} />
-        <Route exact path="/slideshow" component={Slideshow} />
-        {/* <PrivateRoute exact path="/problems/:id" component={ProblemPage} /> */}
       </Switch>
     </Router>
   );

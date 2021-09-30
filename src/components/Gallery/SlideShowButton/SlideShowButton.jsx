@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "../style.scss";
 
-const SlideShowButton = () => {
+const SlideShowButton = ({ startSlideshow }) => {
   const [isSticky, setIsSticky] = useState(false);
   const ref = useRef();
 
@@ -21,15 +21,20 @@ const SlideShowButton = () => {
   }, []);
 
   return (
-    <Link
-      to="/slideshow"
+    <button
+      type="button"
       className={`slideshow-button ${isSticky && "sticked"}`}
       ref={ref}
+      onClick={startSlideshow}
     >
       <img src="slideshow2.svg" alt="slideshow" />
       <span>Slideshow</span>
-    </Link>
+    </button>
   );
+};
+
+SlideShowButton.propTypes = {
+  startSlideshow: PropTypes.func.isRequired,
 };
 
 export default SlideShowButton;

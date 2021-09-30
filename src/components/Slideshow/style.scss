@@ -1,0 +1,134 @@
+.slideshow-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 2;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+
+  .slideshow {
+    transition: ease 1000ms;
+    display: flex;
+    width: 100vw;
+
+    .media-container {
+      img,
+      video {
+        width: 100vw;
+        height: 80vh;
+        object-fit: scale-down;
+      }
+    }
+  }
+
+  .counter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .counter {
+      display: flex;
+      position: relative;
+      transform: translateX(50px);
+
+      .player-line-background {
+        .horizontal-line,
+        .vertical-line {
+          position: absolute;
+          z-index: -2;
+          background-color: grey;
+        }
+
+        .horizontal-line {
+          transform: translateX(-100px);
+          top: 50%;
+          width: calc(100% + 100px);
+          height: 1px;
+        }
+
+        .vertical-line {
+          width: 1px;
+          height: 30px;
+          left: 100%;
+        }
+      }
+
+      .index-circles-container {
+        display: flex;
+        cursor: default;
+
+        .index-circle {
+          width: 30px;
+          height: 30px;
+          background-color: #000;
+          color: #fff;
+          border: 1px solid #fff;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+
+          &:disabled {
+            color: rgba(256, 256, 256, 0.4);
+            border: 1px solid rgba(256, 256, 256, 0.4);
+            cursor: default;
+          }
+
+          &.current-circle {
+            background-color: #fff;
+            color: #000;
+          }
+
+          &.completed {
+            transform: translateX(-100px);
+            transition: all ease 1000ms;
+          }
+        }
+      }
+
+      .player-line {
+        position: absolute;
+        z-index: -1;
+        top: calc(50% - 1px);
+        transition-delay: 1000ms;
+        transition-timing-function: ease;
+        height: 3px;
+        background-color: #fff;
+      }
+    }
+
+    @keyframes width-animate {
+      0% {
+        width: 1px;
+      }
+      100% {
+        width: 100px;
+      }
+    }
+    @keyframes width-reduce {
+      0% {
+        width: 100px;
+      }
+      100% {
+        width: 1px;
+      }
+    }
+
+    .previous-next-button {
+      $button-color: #fff;
+      margin-top: 15px;
+      color: $button-color;
+      border: 1px solid $button-color;
+      padding: 5px 10px;
+
+      &:disabled {
+        cursor: default;
+        color: rgba(256, 256, 256, 0.4);
+        border: 1px solid rgba(256, 256, 256, 0.4);
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { filterMediaFiles, getMediaElement } from "../../store/utils";
+import Slideshow from "../Slideshow/Slideshow";
 import SlideShowButton from "./SlideShowButton/SlideShowButton";
 import "./style.scss";
 
@@ -23,23 +24,31 @@ const mediaFiles = [
 const columnCount = null;
 
 const Gallery = () => {
+  const [displaySlideshow, setDisplaySlideshow] = useState(false);
+
   useEffect(() => {
     filterMediaFiles(mediaFiles);
   }, []);
+
   return (
-    <div className="gallery-container">
-      <div className="gallery-header">
-        <h1>Gallery</h1>
+    <>
+      {displaySlideshow && (
+        <Slideshow endSlideshow={() => setDisplaySlideshow(false)} />
+      )}
+      <div className="gallery-container">
+        <div className="gallery-header">
+          <h1>Gallery</h1>
+        </div>
+        <SlideShowButton startSlideshow={() => setDisplaySlideshow(true)} />
+        <div className="gallery" style={columnCount && { columnCount }}>
+          {mediaFiles.map((mediaFile, index) => (
+            <a href={mediaFile} key={index}>
+              {getMediaElement(mediaFile, index)}
+            </a>
+          ))}
+        </div>
       </div>
-      <SlideShowButton />
-      <div className="gallery" style={columnCount && { columnCount }}>
-        {mediaFiles.map((mediaFile, index) => (
-          <a href={mediaFile} key={index}>
-            {getMediaElement(mediaFile, index)}
-          </a>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 

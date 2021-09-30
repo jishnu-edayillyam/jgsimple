@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore/lite";
+import { disableNetwork } from "firebase/firestore";
 import PropTypes from "prop-types";
 import Gallery from "../../components/Gallery/Gallery";
 import "./style.scss";
 import db from "../../firebase";
+import { slugReverse } from "../../store/utils";
 
 const ProjectDetails = ({ match }) => {
   const [projects, setProjects] = useState([]);
 
   async function getProjects() {
     const projectsCollection = collection(db, "projects");
-    const q = query(projectsCollection, where("name", "==", match.params.id));
+    const q = query(
+      projectsCollection,
+      where("name", "==", slugReverse(match.params.id))
+    );
     const projectsSnapshot = await getDocs(q);
+    await disableNetwork(db);
     setProjects(projectsSnapshot.docs.map((doc1) => doc1.data()));
   }
 
   useEffect(() => {
     getProjects();
-  }, []);
 
-  useEffect(() => {
     const cards = document.querySelectorAll(".about-cards");
 
     const observerOnDown = new IntersectionObserver(
