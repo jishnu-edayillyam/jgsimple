@@ -203,9 +203,11 @@ const Slideshow = ({ endSlideshow }) => {
       }
 
       setTimeout(() => {
-        playerLineRef.current.style.animation = `width-animate ${
-          timeout - 1000
-        }ms linear`;
+        if (playerLineRef.current) {
+          playerLineRef.current.style.animation = `width-animate ${
+            timeout - 1000
+          }ms linear`;
+        }
       }, 1000);
 
       timeoutRef.current = setTimeout(() => {
