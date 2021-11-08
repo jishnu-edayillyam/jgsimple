@@ -4,24 +4,24 @@
 @import "./colors";
 @import "./breakpoints";
 
-body {
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: $SFUIText;
-  height: 100%;
-}
-.body-wrapper form .text-group {
-  .mde-preview .mde-preview-content {
-    max-height: 100px;
-    overflow-y: auto;
-    > p {
-      margin-left: 0;
-      font-weight: normal;
-    }
-    > * {
-      color: #2b3642;
-    }
-  }
-}
+// body {
+//   margin: 0;
+//   padding: 0;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   font-family: $SFUIText;
+//   // height: 100%;
+// }
+// .body-wrapper form .text-group {
+//   .mde-preview .mde-preview-content {
+//     max-height: 100px;
+//     overflow-y: auto;
+//     > p {
+//       margin-left: 0;
+//       font-weight: normal;
+//     }
+//     > * {
+//       color: #2b3642;
+//     }
+//   }
+// }

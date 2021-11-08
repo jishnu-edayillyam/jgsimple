@@ -6,9 +6,7 @@ const MenuButton = () => {
   const [displayMenu, setDisplayMenu] = useState(false);
 
   const onBackButtonEvent = () => {
-    if (!displayMenu) {
-      setDisplayMenu(false);
-    }
+    setDisplayMenu(false);
   };
 
   // close the Menu when broswer back/forward button is clicked
