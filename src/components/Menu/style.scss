@@ -15,7 +15,7 @@
     padding: 150px 0;
     display: grid;
     place-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 1);
     animation: widthAnimate var(--widthAnimationDuration)
       cubic-bezier(0.15, 0.45, 0.7, -0.01) forwards;
 

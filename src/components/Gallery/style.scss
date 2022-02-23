@@ -16,16 +16,17 @@
     border-radius: 23px;
     background-color: cadetblue;
     font-size: 14px;
+    padding: 10px;
 
     span {
       color: #000;
       overflow: hidden;
       width: 85px;
       transition: width 500ms ease;
+      font-size: 1.1rem;
     }
 
     img {
-      margin: 10px;
       width: 26px;
     }
 
