@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore/lite";
 import { Link } from "react-router-dom";
+
 import "./style.scss";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import db from "../../firebase";
 import { slugify } from "../../store/utils";
+import Loader from "../../components/Loader/Loader";
+import { loadingEndAnimationDuration } from "../../store/constants";
 
 // const projects = [
 //   { titleImage: "house2.jpg", name: "AllProjects component created" },
@@ -52,24 +55,41 @@ import { slugify } from "../../store/utils";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
+  const [isContentLoading, setIsContentLoading] = useState(true);
+  const [isLoadingEndAnimation, setIsLoadingEndAnimation] = useState(false);
 
   async function getProjects() {
     const projectsCollection = collection(db, "projects");
     const projectsSnapshot = await getDocs(projectsCollection);
     setProjects(projectsSnapshot.docs.map((doc1) => doc1.data()));
+    setIsLoadingEndAnimation(true);
+    setIsContentLoading(false);
+    setTimeout(() => {
+      setIsLoadingEndAnimation(false);
+    }, loadingEndAnimationDuration);
   }
 
   useEffect(() => {
     getProjects();
   }, []);
 
+  useEffect(() => {
+    if (projects.length === 3) {
+      setProjects(projects.concat(projects).concat(projects));
+    }
+  }, [projects]);
+
   // hide scrollbar for only this page
   useEffect(() => {
-    document.body.classList.add("no-scrollbar");
+    document.documentElement.classList.add("no-scrollbar");
     return () => {
-      document.body.classList.remove("no-scrollbar");
+      document.documentElement.classList.remove("no-scrollbar");
     };
   }, []);
+
+  if (isContentLoading || isLoadingEndAnimation) {
+    return <Loader isContentLoading={isContentLoading} />;
+  }
 
   return (
     <div className="projects-list-container">

@@ -15,13 +15,13 @@
   -webkit-clip-path: inset(0 0 0 0);
 }
 
-html,
-body {
-  // overflow: auto;
-  ::-webkit-scrollbar {
-    width: 0;
-  }
-}
+// html,
+// body {
+//   // overflow: auto;
+//   ::-webkit-scrollbar {
+//     width: 0;
+//   }
+// }
 
 .house {
   &:first-child {
@@ -75,9 +75,9 @@ body {
       transform: translateY(-2px);
     }
   }
-  ::-webkit-scrollbar {
-    width: 20px !important;
-  }
+  // ::-webkit-scrollbar {
+  //   width: 20px !important;
+  // }
 
   .about-the-work-container {
     // position: absolute;

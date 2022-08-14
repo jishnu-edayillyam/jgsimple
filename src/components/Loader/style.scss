@@ -1,3 +1,5 @@
+@import "../../styles/utils";
+
 .loader-container {
   height: 100vh;
   display: grid;
@@ -5,10 +7,15 @@
   grid-template-columns: auto;
   justify-items: center;
   align-items: center;
+  overflow-x: hidden;
 
   .jg-logo {
-    width: 100px;
+    width: 70px;
     grid-row-start: 2;
+
+    @include tablet {
+      width: 100px;
+    }
   }
 
   & .loading-animation {
@@ -16,27 +23,49 @@
 
     .writing-hand {
       position: relative;
-      width: 80px;
-      left: 40%;
+      width: 50px;
+      animation: translateHand 5s linear forwards;
+
+      @keyframes translateHand {
+        0% {
+          left: 0%;
+        }
+        100% {
+          left: 90%;
+        }
+      }
+
+      @include tablet {
+        width: 80px;
+      }
     }
 
     .measuring-scale {
       .completed-status-line {
-        width: 40%;
         height: 3px;
         background-color: yellow;
         margin: -7px 0 2px;
+        animation: completedStatusLineAnimation 5s linear forwards;
+
+        @keyframes completedStatusLineAnimation {
+          0% {
+            width: 0;
+          }
+          100% {
+            width: 90%;
+          }
+        }
       }
       .vertical-lines {
         display: flex;
 
         div {
-          width: 7px;
+          width: 5px;
           border-left: 1px solid #fff;
           border-top: 1px solid #fff;
 
           &.large-line {
-            height: 20px;
+            height: 15px;
 
             &:last-child {
               width: 1px;
@@ -44,7 +73,19 @@
           }
 
           &.small-line {
-            height: 10px;
+            height: 7px;
+          }
+
+          @include tablet {
+            width: 7px;
+
+            &.large-line {
+              height: 20px;
+            }
+
+            &.small-line {
+              height: 10px;
+            }
           }
         }
       }

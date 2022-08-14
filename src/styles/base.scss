@@ -3,8 +3,6 @@
 @import "../styles/utils";
 
 html {
-  // height: 100%;
-
   @include mobile {
     font-size: 13px;
   }
@@ -23,22 +21,4 @@ html {
   @include fullHd {
     font-size: 14px;
   }
-}
-
-body {
-  font-size: 16px;
-  padding: 0;
-  margin: 0;
-  color: $blue-dark;
-}
-
-#root {
-  // min-height: 100%;
-  position: relative;
-}
-
-h1 {
-  color: #0186be;
-  font-size: 24px;
-  word-break: break-all;
 }

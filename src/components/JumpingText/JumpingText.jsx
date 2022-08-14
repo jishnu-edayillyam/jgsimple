@@ -31,7 +31,7 @@ const JumpingText = ({ text, animateOnMount, animateOnMountDelay }) => {
   };
 
   const setTextHovered = () => {
-    ref.current.classList.add("hovered");
+    ref.current?.classList.add("hovered");
     timeoutRef.current = setTimeout(() => {
       ref.current?.classList.remove("hovered");
     }, textJumpDurationOfEachLetter + textJumpDelayOfLastLetter); // total text jump time for last letter

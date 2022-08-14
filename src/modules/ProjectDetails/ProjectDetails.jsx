@@ -1,15 +1,18 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore/lite";
 import PropTypes from "prop-types";
+
 import Gallery from "../../components/Gallery/Gallery";
 import "./style.scss";
 import db from "../../firebase";
 import { slugReverse } from "../../store/utils";
+import Loader from "../../components/Loader/Loader";
+import { loadingEndAnimationDuration } from "../../store/constants";
 
 const ProjectDetails = ({ match }) => {
   const [project, setProject] = useState([]);
-  const basicInfoContainer = useRef();
+  const [isContentLoading, setIsContentLoading] = useState(true);
+  const [isLoadingEndAnimation, setIsLoadingEndAnimation] = useState(false);
 
   async function getProjects() {
     const projectsCollection = collection(db, "projects");
@@ -19,6 +22,11 @@ const ProjectDetails = ({ match }) => {
     );
     const projectsSnapshot = await getDocs(q);
     setProject(projectsSnapshot.docs.map((doc1) => doc1.data()));
+    setIsLoadingEndAnimation(true);
+    setIsContentLoading(false);
+    setTimeout(() => {
+      setIsLoadingEndAnimation(false);
+    }, loadingEndAnimationDuration);
     // setProjects([
     //   {
     //     name: "project name",
@@ -42,6 +50,10 @@ const ProjectDetails = ({ match }) => {
   useEffect(() => {
     getProjects();
   }, []);
+
+  if (isContentLoading || isLoadingEndAnimation) {
+    return <Loader isContentLoading={isContentLoading} />;
+  }
 
   return (
     <div className="project-details-page">

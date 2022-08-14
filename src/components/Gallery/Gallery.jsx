@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { slideshowClipAnimationDuration } from "../../store/constants";
 import { filterMediaFiles, getMediaElement } from "../../store/utils";
 import Slideshow from "../Slideshow/Slideshow";
 import SlideShowButton from "./SlideShowButton/SlideShowButton";
@@ -25,15 +26,19 @@ const columnCount = null;
 const Gallery = () => {
   const [displaySlideshow, setDisplaySlideshow] = useState(false);
 
+  const handleEndSlideshow = () => {
+    setTimeout(() => {
+      setDisplaySlideshow(false);
+    }, slideshowClipAnimationDuration * 2);
+  };
+
   useEffect(() => {
     filterMediaFiles(mediaFiles);
   }, []);
 
   return (
     <>
-      {displaySlideshow && (
-        <Slideshow endSlideshow={() => setDisplaySlideshow(false)} />
-      )}
+      {displaySlideshow && <Slideshow endSlideshow={handleEndSlideshow} />}
       <div className="gallery-container">
         <div className="gallery-header">
           <h1>Gallery</h1>
@@ -41,9 +46,9 @@ const Gallery = () => {
         <SlideShowButton startSlideshow={() => setDisplaySlideshow(true)} />
         <div className="gallery" style={columnCount && { columnCount }}>
           {mediaFiles.map((mediaFile, index) => (
-            <a href={mediaFile} key={index}>
-              {getMediaElement(mediaFile, index)}
-            </a>
+            <div key={index}>
+              <a href={mediaFile}>{getMediaElement(mediaFile, index)}</a>
+            </div>
           ))}
         </div>
       </div>

@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+
+  // mozilla firefox
+  scrollbar-width: thin;
+  scrollbar-color: rgba(87, 144, 177, 0.658) rgb(255, 255, 255);
 }
 
 html,
@@ -18,7 +22,7 @@ button {
   cursor: pointer;
 }
 
-$scrollbar-width: 20px;
+$scrollbar-width: 7px;
 ::-webkit-scrollbar {
   width: $scrollbar-width;
   border-radius: $scrollbar-width / 2;

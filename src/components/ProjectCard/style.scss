@@ -1,14 +1,20 @@
 @import "../../styles/fonts.scss";
+@import "../../styles/utils.scss";
 
 .card-container {
   height: 80px;
   overflow: hidden;
-  transition: ease 1s;
+  transition: ease 0.8s;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
 
-  &:hover {
+  &:hover,
+  &.expand {
     height: 200px;
+
+    @include tablet {
+      height: 300px;
+    }
   }
 
   .card {

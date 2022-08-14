@@ -1,3 +1,9 @@
-.no-scrollbar::-webkit-scrollbar {
-  width: 0;
+.no-scrollbar {
+  scrollbar-width: none; // mozilla firefox
+
+  & body {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
 }

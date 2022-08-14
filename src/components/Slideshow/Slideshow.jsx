@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
 import PropTypes from "prop-types";
 import "./style.scss";
+import { slideshowClipAnimationDuration } from "../../store/constants";
 // import 'gif-me-duration'
 
 // const gifDurations = require("gif-me-duration");
@@ -134,6 +135,7 @@ const Slideshow = ({ endSlideshow }) => {
 
   function updateSlide() {
     if (slideIndex === mediaFiles.length - 1) {
+      slideshowContainerRef.current?.classList.add("ending");
       endSlideshow();
     } else {
       setSlideIndex(slideIndex + 1);
@@ -158,9 +160,11 @@ const Slideshow = ({ endSlideshow }) => {
           slideIndex === 0 ? 0 : Math.max(0, 1000 - (time1 - time0));
 
         setTimeout(() => {
-          playerLineRef.current.style.animation = `width-animate ${
-            defaultTimeout - 1000
-          }ms linear`;
+          if (playerLineRef.current) {
+            playerLineRef.current.style.animation = `width-animate ${
+              defaultTimeout - 1000
+            }ms linear`;
+          }
         }, delay);
 
         timeoutRef.current = setTimeout(() => {
@@ -224,59 +228,73 @@ const Slideshow = ({ endSlideshow }) => {
   }, [slideIndex]);
 
   return (
-    <div className="slideshow-container" ref={slideshowContainerRef}>
+    <>
       <div
-        ref={slideshowRef}
-        className="slideshow"
-        style={{ transform: `translate3d(${-slideIndex * 100}%, 0, 0)` }}
+        className="slideshow-container"
+        ref={slideshowContainerRef}
+        style={{
+          "--clip-animation-duration": `${slideshowClipAnimationDuration}ms`,
+        }}
       >
-        {mediaFiles.map((media, index) => (
-          <div key={index} className="media-container">
-            {getMediaElement(media, index)}
-          </div>
-        ))}
-      </div>
-      <div className="counter-container">
-        <div className="counter">
-          <div className="player-line-background">
-            <div className="horizontal-line" />
-            {slideIndex === mediaFiles.length - 1 && (
-              <div className="vertical-line" />
-            )}
-          </div>
-          <div className="index-circles-container">
-            {mediaFiles.map((mediaFile, index) => (
-              <button
-                type="button"
-                key={index}
-                disabled={index < slideIndex}
-                className={`index-circle " ${
-                  index === slideIndex ? "current-circle" : ""
-                } ${index <= slideIndex ? "completed" : ""}`}
-                onClick={() => setSlideIndex(index)}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
-          <div
-            ref={playerLineRef}
-            className="player-line"
-            style={{ transform: `translateX(${-70 + slideIndex * 30}px)` }}
-          />
-        </div>
-        <button
-          type="button"
-          className="previous-next-button"
-          disabled={slideIndex === mediaFiles.length - 1}
-          onClick={() => {
-            setSlideIndex((prevIndex) => prevIndex + 1);
-          }}
+        <div
+          ref={slideshowRef}
+          className="slideshow"
+          style={{ transform: `translate3d(${-slideIndex * 100}%, 0, 0)` }}
         >
-          Next
-        </button>
+          {mediaFiles.map((media, index) => (
+            <div key={index} className="media-container">
+              {getMediaElement(media, index)}
+            </div>
+          ))}
+        </div>
+        <div className="counter-container">
+          <div className="counter">
+            <div className="player-line-background">
+              <div className="horizontal-line" />
+              {slideIndex === mediaFiles.length - 1 && (
+                <div className="vertical-line" />
+              )}
+            </div>
+            <div className="index-circles-container">
+              {mediaFiles.map((mediaFile, index) => (
+                <button
+                  type="button"
+                  key={index}
+                  disabled={index < slideIndex}
+                  className={`index-circle " ${
+                    index === slideIndex ? "current-circle" : ""
+                  } ${index <= slideIndex ? "completed" : ""}`}
+                  onClick={() => setSlideIndex(index)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+            <div
+              ref={playerLineRef}
+              className="player-line"
+              style={{ transform: `translateX(${-70 + slideIndex * 30}px)` }}
+            />
+          </div>
+          <button
+            type="button"
+            className="previous-next-button"
+            disabled={slideIndex === mediaFiles.length - 1}
+            onClick={() => {
+              setSlideIndex((prevIndex) => prevIndex + 1);
+            }}
+          >
+            Next
+          </button>
+        </div>
       </div>
-    </div>
+      <div
+        className="blank-background"
+        style={{
+          "--clip-animation-duration": `${slideshowClipAnimationDuration}ms`,
+        }}
+      />
+    </>
   );
 };
 

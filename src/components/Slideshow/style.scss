@@ -6,9 +6,51 @@
   overflow: hidden;
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: black;
+  clip-path: inset(0 0 100% 0);
+  animation: clipBox var(--clip-animation-duration) ease-in
+    var(--clip-animation-duration) forwards;
+
+  @keyframes clipBox {
+    0% {
+      clip-path: inset(0 0 100% 0);
+    }
+
+    100% {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  &.ending {
+    animation: clipEnding var(--clip-animation-duration) ease-out forwards;
+
+    @keyframes clipEnding {
+      0% {
+        clip-path: inset(0 0 0 0);
+      }
+
+      100% {
+        clip-path: inset(0 0 100% 0);
+      }
+    }
+
+    & + .blank-background {
+      animation: clipEnding var(--clip-animation-duration) ease-in
+        var(--clip-animation-duration) forwards;
+
+      @keyframes clipEnding {
+        0% {
+          clip-path: inset(0 0 0 0);
+        }
+
+        100% {
+          clip-path: inset(0 0 100% 0);
+        }
+      }
+    }
+  }
 
   .slideshow {
     transition: ease 1000ms;
@@ -130,6 +172,26 @@
         color: rgba(256, 256, 256, 0.4);
         border: 1px solid rgba(256, 256, 256, 0.4);
       }
+    }
+  }
+}
+
+.blank-background {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  background-color: white;
+  animation: clipBox var(--clip-animation-duration) ease-out forwards;
+
+  @keyframes clipBox {
+    0% {
+      clip-path: inset(0 0 100% 0);
+    }
+
+    100% {
+      clip-path: inset(0 0 0 0);
     }
   }
 }

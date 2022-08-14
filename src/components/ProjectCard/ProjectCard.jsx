@@ -21,6 +21,32 @@ const ProjectCard = ({ details }) => {
     }
   }, [fontSize]);
 
+  useLayoutEffect(() => {
+    let observer;
+    let catchedRef;
+
+    // only for smartphones and tablets
+    if (!matchMedia("(pointer:fine)").matches) {
+      catchedRef = containerRef.current;
+      observer = new IntersectionObserver(
+        ([e]) => {
+          if (e.intersectionRatio > 0) {
+            catchedRef?.classList.add("expand");
+          } else {
+            catchedRef?.classList.remove("expand");
+          }
+        },
+        { threshold: 0, rootMargin: "-50% 0px -50% 0px" }
+      );
+
+      observer.observe(catchedRef);
+    }
+
+    return () => {
+      observer?.unobserve(catchedRef);
+    };
+  }, []);
+
   return (
     <div className="card-container" ref={containerRef}>
       <div className="card">

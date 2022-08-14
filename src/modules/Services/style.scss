@@ -1,0 +1,14 @@
+.services-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  padding: 0 30px;
+
+  .services-header-text {
+    font-size: clamp(50px, 25vw, 200px);
+    color: white;
+    line-height: 1em;
+    text-align: end;
+    border-bottom: 1px solid white;
+  }
+}
